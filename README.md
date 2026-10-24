@@ -1,71 +1,65 @@
-# devzen README
+# Pomodoro & Water Tracker
+>The project helps the developer work more efficiently by maintaining focus with a Pomodoro timer and tracking daily water balance directly in VS Code.
 
-This is the README for your extension "devzen". After writing up a brief description, we recommend including the following sections.
+## extension.ts:
+>The file contains commands and logic that perform calculations and UI updates related to the timer and status bar.
+### Command's description:
+- **pomodoro.start_pomodoro()** command takes the user's task input, starts the countdown timer, and returns UI updates in the Status Bar.
+<br>
+> **Execution example**:
+<br>
+>> input: "Fix login bug"
+<br>
+output: Status bar changes to `$(debug-stop) [Fix login bug] 24:59 | 🍅 0/8 | 💧 0/5`
+<br>
+<br>
+>> input: Timer reaches 00:00
+<br>
+output: Notification `🍅 Спринт по задаче "Fix login bug" завершен! Время размяться и выпить воды.`
+<br>
+<br>
+>> input: User clicks while timer is running
+<br>
+output: Notification `Остановить текущий спринт ("Fix login bug")?`
+<br>
 
-## Features
+- **pomodoro.add_water()** command takes a trigger (click or command palette) and returns an incremented water counter.
+<br>
+> **Execution example**:
+<br>
+>> input: Trigger command
+<br>
+output: Status bar changes to `💧 1/5` and shows `Молодец! Водный баланс пополнен 💧`
+<br>
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+## package.json:
+>The file contains the configuration settings that allow the user to customize the tracker's behavior.
+### Configuration's description:
+- **pomodoro.pomodoro_duration** setting takes a number (minutes) and returns the configured duration for the next sprint.
+<br>
+> **Execution example**:
+<br>
+>> input: 25
+<br>
+output: Timer duration set to 25 minutes
+<br>
+<br>
+>> input: 0.1
+<br>
+output: Timer duration set to 6 seconds (for testing)
+<br>
 
-For example if there is an image subfolder under your extension project workspace:
+- **pomodoro.daily_water_goal** setting takes a number and returns the maximum value for the water progress indicator.
+<br>
+> **Execution example**:
+<br>
+>> input: 5
+<br>
+output: Status bar displays `💧 0/5`
+<br>
+<br>
+>> input: 10
+<br>
+output: Status bar displays `💧 0/10`
 
-\!\[feature X\]\(images/feature-x.png\)
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
-
-## Requirements
-
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
-
-## Extension Settings
-
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
-
-For example:
-
-This extension contributes the following settings:
-
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
-
-## Known Issues
-
-Calling out known issues can help limit users opening duplicate issues against your extension.
-
-## Release Notes
-
-Users appreciate release notes as you update your extension.
-
-### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
----
-
-## Following extension guidelines
-
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
-
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
-
-## Working with Markdown
-
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
-
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
