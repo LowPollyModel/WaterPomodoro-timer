@@ -1,7 +1,8 @@
 {
-  "name": "devzen",
-  "displayName": "DevZen",
-  "description": "",
+  "name": "pomodoro",
+  "displayName": "Water|Pomodoro timer",
+  "description": "Помощник в продуктивности по помодоро и поддержании водного баланса",
+  "icon": "images/pomodoro-icon.jpg",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.140.0"
@@ -9,15 +10,41 @@
   "categories": [
     "Other"
   ],
-  "activationEvents": [],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
   "main": "./out/extension.js",
   "contributes": {
     "commands": [
       {
-        "command": "devzen.helloWorld",
-        "title": "Hello World"
+        "command": "pomodoro.start_pomodoro",
+        "title": "Pomodoro: timer starts"
+      },
+      {
+        "command": "pomodoro.add_water",
+        "title": "Pomodoro: drink water"
       }
-    ]
+    ],
+    "configuration": {
+      "title": "Pomodoro",
+      "properties": {
+        "pomodoro.pomodoro_duration": {
+          "type": "number",
+          "default": 25,
+          "description": "Длительность спринта (в минутах)"
+        },
+        "pomodoro.daily_pomodoro_goal": {
+          "type": "number",
+          "default": 8,
+          "description": "Цель по помидоркам на день"
+        },
+        "pomodoro.daily_water_goal": {
+          "type": "number",
+          "default": 5,
+          "description": "Цель по стаканам"
+        }
+      }
+    }
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",
